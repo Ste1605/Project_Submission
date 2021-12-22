@@ -18,6 +18,8 @@ import numpy as np
     #**Insight here that California has highest number of votes in US election
 
 df = pd.read_csv('president_county_candidate.csv')
+#r'C:\Users\Ciara\PycharmProjects\pythonProject1\data.csv'
+#r'C:\Users\Ste Mc - Laptop\PycharmProjects\Project_Submission\president_county_candidate.csv'
 df = df.drop(df[(df.party != 'REP') & (df.party != 'DEM')].index)
 df['party']=df['party'].str.replace(r"DEM","Democrats").str.replace(r"REP","Republicans")
 df_group = df.groupby(['party', 'state'],as_index=False).sum().sort_values(by = 'total_votes', ascending= False).head(20)
@@ -150,12 +152,16 @@ df_group3 = output3.groupby(['party'],as_index=False).sum().sort_values(by = 'vo
 plt.style.use("fivethirtyeight")
 slices = df_group3['votes']
 lables = df_group3['party']
-plt.pie(slices, labels=lables)
+explode = [0, 0.1]
+
+plt.pie(slices, labels=lables, explode=explode, shadow=True,
+        startangle=90, autopct='%1.1f%%',
+        wedgeprops={'edgecolor': 'black'})
 plt.title('2016 US Election by Party')
 plt.tight_layout()
 plt.show()
 
-#######Pie Chart#1 using 2020 data - votes per party
+#######Pie Chart#2 using 2020 data - votes per party
 df2 = pd.read_csv('president_county_candidate.csv')
 df2 = df2.drop(df2[(df2.party != 'REP') & (df2.party != 'DEM')].index)
 output3 = df2
@@ -163,7 +169,10 @@ df_group3 = output3.groupby(['party'],as_index=False).sum().sort_values(by = 'to
 plt.style.use("fivethirtyeight")
 slices = df_group3['total_votes']
 lables = df_group3['party']
-plt.pie(slices, labels=lables)
+explode = [0, 0.1]
+plt.pie(slices, labels=lables, explode=explode, shadow=True,
+        startangle=90, autopct='%1.1f%%',
+        wedgeprops={'edgecolor': 'black'})
 plt.title('2020 US Election by Party')
 plt.tight_layout()
 plt.show()
@@ -205,7 +214,36 @@ print(state_dict[5])
 state_dict.update({53: 'Dublin_is_not_a_state'})
 print(state_dict)
 
-###numpy
+###example of reading an API via an import and adding some logic to it
+wiki = pd.read_html('https://en.wikipedia.org/wiki/2020_United_States_presidential_election')
+election = wiki[2]
+candidate_1 = election[1]
+cand_1_name = candidate_1[1]
+cand_1_ec_vote = candidate_1[5]
+cand_1_pop_vote = candidate_1[7]
+
+candidate_2 = election[2]
+cand_2_name = candidate_2[1]
+cand_2_ec_vote = candidate_2[5]
+cand_2_pop_vote = candidate_2[7]
+
+if cand_2_ec_vote > cand_1_ec_vote:
+    print(cand_2_name, 'Winner')
+else:
+    print(cand_1_name, 'Winner')
+
+###reuseable code
+def getVowels(text):
+    vowel_letters = []
+    vowel_list = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U',]
+
+    for vowels in text:
+        if vowels in vowel_list:
+         vowel_letters.append(vowels)
+    return vowel_letters
+
+print(getVowels('Apple, Banna, Kiwi, Orange, pear'))
+print(getVowels(cand_2_pop_vote))
 
 
 

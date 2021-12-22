@@ -1,16 +1,21 @@
+
 import numpy as np
 import pandas as pd
+from pandas import Series, DataFrame
 import re
+import matplotlib.pyplot as plt
+import matplotlib as mlp
+import os
+import numpy as np
+#####
+df = pd.read_csv(r'C:\Users\Ste Mc - Laptop\PycharmProjects\Project_Submission\president_county_candidate.csv')
+print(df.shape)
+print(df.head())
 
-df = pd.read_csv('president_county_candidate.csv')
-y = np.array(df['total_votes'])
-# Where y is greater than 5, returns index position
-np.where(y>5)
-array(df['total_votes'], dtype=int64),)
-# First will replace the values that match the condition,
-# second will replace the values that does not
-np.where(y>5, "Hit", "Miss")
-array(['Miss', 'Miss', 'Hit', 'Hit', 'Miss', 'Hit', 'Miss', 'Hit', 'Hit'],dtype='<U4')
+
+
+
+
 
 
 
