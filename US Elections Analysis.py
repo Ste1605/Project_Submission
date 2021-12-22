@@ -30,7 +30,7 @@ df_group['year'] = 2020
     #for df1 - the year was added to the DF to indicate the year of election
     #dropped all values which party was not related to DEM/REP
     #for df2 - the year was added to the DF to indicate the year of election
-    #as the eyar was added for each df I could then concatenate the two data sets
+    #as the year was added for each df I could then concatenate the two data sets
     #creating a new df allowed me to add the updated df1 & df2 dataframes for concatenation
     #once the data was concatenated I dropped the columns which were of no relevance
     #there was a difference in how votes were recorded in each df hence why I replaced total votes with votes thus completing my dataset and ensuring there was no NaNs
