@@ -18,8 +18,6 @@ import numpy as np
     #**Insight here that California has highest number of votes in US election
 
 df = pd.read_csv('president_county_candidate.csv')
-#r'C:\Users\Ciara\PycharmProjects\pythonProject1\data.csv'
-#r'C:\Users\Ste Mc - Laptop\PycharmProjects\Project_Submission\president_county_candidate.csv'
 df = df.drop(df[(df.party != 'REP') & (df.party != 'DEM')].index)
 df['party']=df['party'].str.replace(r"DEM","Democrats").str.replace(r"REP","Republicans")
 df_group = df.groupby(['party', 'state'],as_index=False).sum().sort_values(by = 'total_votes', ascending= False).head(20)
