@@ -168,4 +168,44 @@ plt.title('2020 US Election by Party')
 plt.tight_layout()
 plt.show()
 
+####regex to extraxt the content of the tweet from a string value;
+
+string = '1698308935,https://twitter.com/realDonaldTrump/status/1698308935,Be sure to tune in and watch Donald Trump on Late Night with David Letterman as he presents the Top Ten List tonight!,2009-05-04 20:54:25,500,868,,,'
+result=re.findall("^\d*,[\w:/.]*,([^,]*)",string)
+print(result)
+
+####Iterators
+df = pd.read_csv('president_county_candidate.csv')
+electees =df['candidate']
+party =df['party']
+z = zip(electees, party)
+print(type(z))
+
+z_list = list(z)
+print(z_list)
+
+counter_list = list(enumerate(party, 1))
+print(counter_list)
+
+#####Lists & Dictionaries
+df = pd.read_csv('president_state.csv')
+df2 = df['state']
+state_list = df2.tolist()
+#print(state_list)
+#print(state_list[5])
+state_list.append("Dublin_is_not_a_state")
+print(state_list)
+
+###dictioanry
+df = pd.read_csv('president_state.csv')
+df2 = df['state']
+state_dict = df2.to_dict()
+#print(state_dict)
+print(state_dict[5])
+state_dict.update({53: 'Dublin_is_not_a_state'})
+print(state_dict)
+
+###numpy
+
+
 
